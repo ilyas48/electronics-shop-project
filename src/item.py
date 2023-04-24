@@ -13,7 +13,10 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        pass
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+        self.all.append(self)
 
     def calculate_total_price(self) -> float:
         """
@@ -21,10 +24,28 @@ class Item:
 
         :return: Общая стоимость товара.
         """
-        pass
+        return self.price * self.quantity
 
-    def apply_discount(self) -> None:
+    def apply_discount(self) -> float:
         """
         Применяет установленную скидку для конкретного товара.
         """
-        pass
+        self.price = Item.pay_rate * self.price
+        return self.price
+
+
+item1 = Item("Смартфон", 10000, 20)
+item2 = Item("Ноутбук", 20000, 5)
+
+#print(item1.calculate_total_price())
+#print(item2.calculate_total_price())
+
+Item.pay_rate = 0.8  # цена со скидкой
+item1.apply_discount()
+
+#print(item1.price)
+#print(item2.price)
+
+
+
+
