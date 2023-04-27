@@ -17,3 +17,15 @@ def test_apply_discount(item1):
     assert item1.apply_discount() == 850
 
 
+def test_string_to_number():
+    assert Item.string_to_number(5) == 5
+    assert Item.string_to_number(5.0) == 5
+    assert Item.string_to_number(5.5) == 5
+
+
+def test_name():
+    item = Item('Телефон', 10000, 5)
+    item.name = 'Смартфон'
+    assert item.name == 'Смартфон'
+    with pytest.raises(Exception, match='Длина наименования товара превышает 10 символов.'):
+        item.name = 'СуперСмартфон'
