@@ -29,3 +29,13 @@ def test_name():
     assert item.name == 'Смартфон'
     with pytest.raises(Exception, match='Длина наименования товара превышает 10 символов.'):
         item.name = 'СуперСмартфон'
+
+
+def test__repr__():
+    item = Item("Смартфон", 10000, 20)
+    assert repr(item) == "Item('Смартфон', 10000, 20)"
+
+
+def test__str__():
+    item = Item("Смартфон", 10000, 20)
+    assert str(item) == 'Смартфон'
