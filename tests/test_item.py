@@ -1,6 +1,7 @@
 import pytest
 
 from src.item import Item
+from src.phone import Phone
 
 
 @pytest.fixture
@@ -31,11 +32,38 @@ def test_name():
         item.name = 'СуперСмартфон'
 
 
+def test_name_phone():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    phone1.name = 'iPhone 14'
+    assert phone1.number_of_sim == 2
+
+
 def test__repr__():
     item = Item("Смартфон", 10000, 20)
     assert repr(item) == "Item('Смартфон', 10000, 20)"
 
 
+def test_repr_phone():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert repr(phone1) == "Phone('iPhone 14', 120000, 5, 2)"
+
+
 def test__str__():
     item = Item("Смартфон", 10000, 20)
     assert str(item) == 'Смартфон'
+
+
+def test_str_phone():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert str(phone1) == 'iPhone 14'
+
+
+def test_number_of_sim():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    assert phone1.number_of_sim == 2
+
+def test_add_phone():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    item1 = Item("Смартфон", 10000, 20)
+    assert item1 + phone1 == 25
+    assert phone1 + phone1 == 10
