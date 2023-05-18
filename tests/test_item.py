@@ -2,6 +2,7 @@ import pytest
 
 from src.item import Item
 from src.phone import Phone
+from src.keyboard import Keyboard
 
 
 @pytest.fixture
@@ -62,8 +63,24 @@ def test_number_of_sim():
     phone1 = Phone("iPhone 14", 120_000, 5, 2)
     assert phone1.number_of_sim == 2
 
+
 def test_add_phone():
     phone1 = Phone("iPhone 14", 120_000, 5, 2)
     item1 = Item("Смартфон", 10000, 20)
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
+
+
+def test__str__():
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
+    assert str(kb) == "Dark Project KD87A"
+    assert kb.language == "EN"
+
+
+def test_change_lang():
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
+    kb.change_lang()
+    assert kb.language == 'RU'
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
+    kb.change_lang().change_lang()
+    assert kb.language == 'EN'
